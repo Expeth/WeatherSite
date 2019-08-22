@@ -33,28 +33,71 @@ $(() => {
     }
 
     function setCurrentForecastInfo(apiUri) {
-        $.get(apiUri, (data, status) => {
-            let sunrise = new Date(data.sys.sunrise);
-            let sunset = new Date(data.sys.sunset);
+        $.ajax({
+            type: "POST",
+            url: apiUri,
+            success: (data, status) => {
+                let sunrise = new Date(data.sys.sunrise);
+                let sunset = new Date(data.sys.sunset);
 
-            $(".weather-info")[0].innerText = "Surnise: " + sunrise.toLocaleTimeString();
-            $(".weather-info")[1].innerText = "Sunset: " + sunset.toLocaleTimeString();;
-            $(".weather-info")[2].innerText = "Duration: " + new Date(sunset - sunrise).toLocaleTimeString();
+                $(".weather-info")[0].innerText = "Surnise: " + sunrise.toLocaleTimeString();
+                $(".weather-info")[1].innerText = "Sunset: " + sunset.toLocaleTimeString();;
+                $(".weather-info")[2].innerText = "Duration: " + new Date(sunset - sunrise).toLocaleTimeString();
 
-            $(".weather-status")[0].innerText = data.weather[0].main;
-            $(".weather-temp")[0].innerText = parseInt(data.main.temp - 273) + " *C";
-            $(".weather-icon")[0].src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+                $(".weather-status")[0].innerText = data.weather[0].main;
+                $(".weather-temp")[0].innerText = parseInt(data.main.temp - 273) + " *C";
+                $(".weather-icon")[0].src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            },
+            error: () => {
+                return404Page();
+            }
         });
     }
 
     function setHourlyForecastInfo(apiUri) {
-        $.get(apiUri, (data, status) => {
-            for (let i = 1; i < 7; i++) {
-                $(".forecast-datetime")[i].innerText = data.list[i].dt_txt;
-                $(".weather-status")[i].innerText = data.list[i].weather[0].main;
-                $(".weather-temp")[i].innerText = parseInt(data.list[i].main.temp - 273) + " *C";
-                $(".weather-icon")[i].src = `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`;
+        $.ajax({
+            type: "POST",
+            url: apiUri,
+            success: (data, status) => {
+                $("#hourly").html("");
+                for (let i = 0; i < 6; i++) {
+                    let weatherCard = document.createElement('div');
+                    weatherCard.innerHTML = `<div class="weather-card">
+                                                <card class="weather-card-body">
+                                                    <div class="column-container">
+                                                        <img class="weather-icon">
+                                                        <p class="weather-status">Sunny</p>
+                                                        <p class="weather-temp">Sunny</p>
+                                                        <p class="forecast-datetime">Sunny</p>
+                                                    </div>
+                                                </card>
+                                            </div>`;
+
+                    $("#hourly").append(weatherCard);
+
+                    $(".forecast-datetime")[i+1].innerText = data.list[i].dt_txt;
+                    $(".weather-status")[i+1].innerText = data.list[i].weather[0].main;
+                    $(".weather-temp")[i+1].innerText = parseInt(data.list[i].main.temp - 273) + " *C";
+                    $(".weather-icon")[i+1].src = `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`;
+                }
+            },
+            error: () => {
+                return404Page();
             }
         });
+    }
+
+    function return404Page() {
+        $(".weather-section")[0].innerHTML =
+
+            `<div id="notfound">
+		    <div class="notfound">
+			    <div class="notfound-404">
+				    <h3>Oops! Page not found</h3>
+				    <h1><span>4</span><span>0</span><span>4</span></h1>
+			    </div>
+			    <h2>we are sorry, but the page you requested was not found</h2>
+		    </div>
+	    </div>`;
     }
 });

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MyWeather</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/404-page-style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -30,13 +31,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link">Today</a>
+                    <a href="#" class="nav-link" id="todayForecast">Today</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">Next 5 Days</a>
+                    <a href="#" class="nav-link" id="nextDaysForecast">Next 5 Days</a>
                 </li>
             </ul>
             <form id="search-region-form" method="dialog" class="form-inline my-2 my-lg-0">
@@ -47,88 +48,29 @@
     </nav>
 
     <div class="weather-section">
-        <div class="weather-card">
-            <div class="weather-card-header">
-                <span class="add-info">CURRENT WEATHER</span>
-                <span class="add-info forecast-datetime">22.08.2019</span>
-            </div>
-            <card class="weather-card-body">
-                <div class="column-container">
-                    <img class="weather-icon">
-                    <p class="weather-status">Sunny</p>
+        <div id="weather-cards" class="weather-cards">
+            <div class="weather-card">
+                <div class="weather-card-header">
+                    <span class="add-info">CURRENT WEATHER</span>
+                    <span class="add-info forecast-datetime">22.08.2019</span>
                 </div>
-                <div class="column-container">
-                    <p class="weather-temp">29 *C</p>
-                </div>
-                <div class="column-container">
-                    <p class="weather-info">Lorem: ipsum</p>
-                    <p class="weather-info">Lorem: ipsum</p>
-                    <p class="weather-info">Lorem: ipsum</p>
-                </div>
-            </card>
-        </div>
-        <div class="hourly-forecast row-container mt-5">
-            <div class="weather-card">
                 <card class="weather-card-body">
                     <div class="column-container">
                         <img class="weather-icon">
                         <p class="weather-status">Sunny</p>
-                        <p class="weather-temp">Sunny</p>
-                        <p class="forecast-datetime">Sunny</p>
                     </div>
-                </card>
-            </div>
-            <div class="weather-card">
-                <card class="weather-card-body">
                     <div class="column-container">
-                        <img class="weather-icon">
-                        <p class="weather-status">Sunny</p>
-                        <p class="weather-temp">Sunny</p>
-                        <p class="forecast-datetime">Sunny</p>
+                        <p class="weather-temp">29 *C</p>
                     </div>
-                </card>
-            </div>
-            <div class="weather-card">
-                <card class="weather-card-body">
                     <div class="column-container">
-                        <img class="weather-icon">
-                        <p class="weather-status">Sunny</p>
-                        <p class="weather-temp">Sunny</p>
-                        <p class="forecast-datetime">Sunny</p>
-                    </div>
-                </card>
-            </div>
-            <div class="weather-card">
-                <card class="weather-card-body">
-                    <div class="column-container">
-                        <img class="weather-icon">
-                        <p class="weather-status">Sunny</p>
-                        <p class="weather-temp">Sunny</p>
-                        <p class="forecast-datetime">Sunny</p>
-                    </div>
-                </card>
-            </div>
-            <div class="weather-card">
-                <card class="weather-card-body">
-                    <div class="column-container">
-                        <img class="weather-icon">
-                        <p class="weather-status">Sunny</p>
-                        <p class="weather-temp">Sunny</p>
-                        <p class="forecast-datetime">Sunny</p>
-                    </div>
-                </card>
-            </div>
-            <div class="weather-card">
-                <card class="weather-card-body">
-                    <div class="column-container">
-                        <img class="weather-icon">
-                        <p class="weather-status">Sunny</p>
-                        <p class="weather-temp">Sunny</p>
-                        <p class="forecast-datetime">Sunny</p>
+                        <p class="weather-info">Lorem: ipsum</p>
+                        <p class="weather-info">Lorem: ipsum</p>
+                        <p class="weather-info">Lorem: ipsum</p>
                     </div>
                 </card>
             </div>
         </div>
+        <div id="hourly" class="hourly-forecast row-container mt-3"></div>
     </div>
 
     <script src="js/script.js"></script>
