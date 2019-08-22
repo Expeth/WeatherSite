@@ -15,6 +15,14 @@ body {
     align-items: center;
 }
 
+.row-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .weather-section {
     padding: 30px 100px;
 }
@@ -52,4 +60,8 @@ body {
     width: 100px;
     height: 100px;
     margin: 10px;
+}
+
+.hourly-forecast .weather-temp {
+    font-size: 100%;
 }
